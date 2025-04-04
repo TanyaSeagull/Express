@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Comment | Cool App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-hover: #3a56d4;
+            --error: #ef233c;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            transform: translateY(0);
+            animation: fadeInUp 0.6s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            color: #2b2d42;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        label {
+            display: block;
+            font-weight: 500;
+            color: #4a5568;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        input:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        button {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        button:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+        button i {
+            font-size: 18px;
+        }
+        .char-counter {
+            text-align: right;
+            font-size: 12px;
+            color: #718096;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create a New Comment</h1>
+        <form action="/comments" method="POST">
+            <div class="form-group">
+                <label for="username"><i class="fas fa-user"></i> Your Name</label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    placeholder="Enter your username" 
+                    required
+                >
+            </div>
+            <div class="form-group">
+                <label for="comment"><i class="fas fa-comment-dots"></i> Your Comment</label>
+                <textarea 
+                    id="comment" 
+                    name="comment" 
+                    placeholder="Share your thoughts..." 
+                    required
+                ></textarea>
+                <div class="char-counter"><span id="char-count">0</span>/500</div>
+            </div>
+            <button type="submit">
+                <i class="fas fa-paper-plane"></i> Post Comment
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // Динамический счетчик символов
+        const textarea = document.getElementById('comment');
+        const charCount = document.getElementById('char-count');
+        
+        textarea.addEventListener('input', () => {
+            charCount.textContent = textarea.value.length;
+        });
+    </script>
+</body>
+</html>

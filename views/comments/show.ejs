@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comment Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .comment { background: #f5f5f5; padding: 20px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Comment by <%= comment.username %> (id: <%= comment.id %>)</h1>
+    <div class="comment">
+        <p><%= comment.comment %></p>
+    </div>
+    <a href="/comments">Back to all comments</a>
+    <br>
+    <a href="/comments/<%= comment.id %>/edit">Edit comment</a>
+    <br>
+    <form action="/comments/<%= comment.id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>

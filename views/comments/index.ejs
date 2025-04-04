@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --text: #333;
+            --text-light: #666;
+            --border: #e0e0e0;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: var(--text);
+        }
+        h1 {
+            text-align: center;
+            color: var(--text);
+            margin-bottom: 30px;
+        }
+        .comment {
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: white;
+        }
+        .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .username {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .comment-text {
+            margin-bottom: 10px;
+        }
+        .comment-actions {
+            margin-top: 10px;
+        }
+        .action-link {
+            color: var(--primary);
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 14px;
+        }
+        .new-comment-btn {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Comments</h1>
+
+    <% for(let c of comments) { %>
+        <div class="comment">
+            <div class="comment-header">
+                <span class="username"><%= c.username %></span>
+            </div>
+            <p class="comment-text"><%= c.comment %></p>
+            <div class="comment-actions">
+                <a href="/comments/<%= c.id %>" class="action-link">Details</a>
+            </div>
+        </div>
+    <% } %>
+
+    <a href="/comments/new" class="new-comment-btn">New Comment</a>
+</body>
+</html>
